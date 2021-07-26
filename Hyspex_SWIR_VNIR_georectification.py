@@ -134,8 +134,8 @@ def modify_hyspex_band(img, band, arr):
 def main():
     # parameters for the geo rectification:
     kwargs = {
-        'grid_res': 400, #400, # 350
-        'window_size': (256, 256), #256, #150
+        'grid_res': 450, #450, #400, # 350
+        'window_size': (280, 280), #280, #256, #150
         # 'path_out': out,
         'r_b4match': 187,
         's_b4match': 186,
@@ -143,13 +143,13 @@ def main():
         'max_iter': 8,
         'max_shift': 10,
         'nodata': (0, 0),
-        # 'tieP_filter_level': 1, # avoid filter 2 and 3, fix the SSIM filter error
+        'tieP_filter_level': 3, # avoid filter 2 and 3, fix the SSIM filter error
         # 'min_reliability': 25,
         'resamp_alg_calc': 'nearest',
         'q': False
     }
     # dir_in = r'Z:\townsenduser-rw\HyspexPro\Output\Cheesehead_V3\CHEESEHEAD_20190626\CHEESEHEAD_20190626_02_quicklooks'
-    dir_in = r'Z:\townsenduser-rw\HyspexPro\Output\Cheesehead_V3\CHEESEHEAD_20190711'
+    dir_in = r'Z:\townsenduser-rw\HyspexPro\Output\Cheesehead_V3\CHEESEHEAD_20190629'
     # create deshift folder for deshifted Refl data:
     dest_dir = dir_in + '/Deshift'
     if not os.path.exists(dest_dir):
@@ -162,7 +162,7 @@ def main():
     error_ls = []
 
     # for left over imgs:
-    # imgs = [imgs[x] for x in [3, 7]]
+    imgs = [imgs[x] for x in [7]]
     for img in imgs:
         # # # copy file in /Merge to Deshift:
         # shutil.copy(img, dest_dir)
