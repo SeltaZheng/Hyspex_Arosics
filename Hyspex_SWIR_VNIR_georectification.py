@@ -134,8 +134,8 @@ def modify_hyspex_band(img, band, arr):
 def main():
     # parameters for the geo rectification:
     kwargs = {
-        'grid_res': 450, #450, #400, # 350
-        'window_size': (280, 280), #280, #256, #150
+        'grid_res': 400, #450, #400, # 350
+        'window_size': (256, 256), #280, #256, #150
         # 'path_out': out,
         'r_b4match': 187,
         's_b4match': 186,
@@ -149,7 +149,7 @@ def main():
         'q': False
     }
     # dir_in = r'Z:\townsenduser-rw\HyspexPro\Output\Cheesehead_V3\CHEESEHEAD_20190626\CHEESEHEAD_20190626_02_quicklooks'
-    dir_in = r'Z:\townsenduser-rw\HyspexPro\Output\Cheesehead_V3\CHEESEHEAD_20190629'
+    dir_in = r'Z:\townsenduser-rw\HyspexPro\Output\Cheesehead_V3\CHEESEHEAD_20190830'
     # create deshift folder for deshifted Refl data:
     dest_dir = dir_in + '/Deshift'
     if not os.path.exists(dest_dir):
@@ -162,12 +162,12 @@ def main():
     error_ls = []
 
     # for left over imgs:
-    imgs = [imgs[x] for x in [7]]
+    imgs = [imgs[x] for x in [12]]
     for img in imgs:
-        # # # copy file in /Merge to Deshift:
-        # shutil.copy(img, dest_dir)
-        # # file header:
-        # shutil.copy(img + '.hdr', dest_dir)
+        # # copy file in /Merge to Deshift:
+        shutil.copy(img, dest_dir)
+        # file header:
+        shutil.copy(img + '.hdr', dest_dir)
 
         # rename files:
         img_base = os.path.basename(img)
@@ -175,10 +175,10 @@ def main():
         dest_img = dest_file + '_deshift'
 
         #
-        # os.rename(dest_file, dest_img)
-        # dest_hdr = os.path.join(dest_dir, img_base + '.hdr')
-        # os.rename(dest_hdr, dest_file + '_deshift.hdr')
-        # del dest_file, dest_hdr
+        os.rename(dest_file, dest_img)
+        dest_hdr = os.path.join(dest_dir, img_base + '.hdr')
+        os.rename(dest_hdr, dest_file + '_deshift.hdr')
+        del dest_file, dest_hdr
 
         # calculate the shift info
         CRL = COREG_LOCAL(img, img, **kwargs)
