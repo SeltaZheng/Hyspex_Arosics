@@ -6,7 +6,7 @@
 import os, sys, argparse, json, glob
 import numpy as np
 from numpy.linalg import inv
-import gdal, gdalconst
+from osgeo import gdal, gdalconst
 from arosics.DeShifter import DESHIFTER
 from arosics import COREG_LOCAL
 
@@ -56,8 +56,8 @@ def update_gcp_rotation(coreg_dict, inv_rotation_matrix, geotransform, rotation_
 def main():  # argv
 
     # set up directories
-    yrs = ['2015']#['2013', '2014', '2015', '2016', '2017', '2018']
-    boxes = ['f150602']#['f130612', 'f140603', 'f150601', 'f160621', 'f170607', 'f180622']
+    yrs = ['2013']#['2013', '2014', '2015', '2016', '2017', '2018']
+    boxes = ['f130626']#['f130612', 'f140603', 'f150601', 'f150602', 'f160621', 'f170607', 'f180622']
     box_name = 'Yosemite_NEON'
     dir_landsat = r'Y:\CA_timeseries\LandSAT'
     dir_avs = r'Z:\townsenduser-rw\CA_project\Raw'

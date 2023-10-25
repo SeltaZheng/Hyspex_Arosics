@@ -6,7 +6,7 @@ import numpy as np
 from ENVI import read_envi_header, write_envi_header
 from arosics.DeShifter import DESHIFTER
 from arosics import COREG_LOCAL
-import gdal
+from osgeo import gdal
 
 def hyspex_extract(src_img, bands, out_img):
     """
@@ -89,7 +89,7 @@ def Gdal_write_band(dst_raster,band_number,band_array,band_name,no_data=-9999):
     no_data: int or float
     no data value, default to -9999
     '''
-    import gdal
+
     outband = dst_raster.GetRasterBand(band_number)
     outband.SetNoDataValue(no_data)
     outband.SetDescription(band_name)
